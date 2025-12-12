@@ -1,4 +1,4 @@
-# <img src="https://github.com/user-attachments/assets/c8840640-5e45-4bcb-86a1-5d52a4b3f075" width="30px"> Duoblock Origin
+# <img src="https://github.com/user-attachments/assets/14441a7c-0e20-4c2a-8602-17af7840afc6" width="35px"> Duoblock Origin
 > **Does not provide paid features!**
 > 
 > 

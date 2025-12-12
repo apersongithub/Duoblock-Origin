@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Duoblock Origin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg-color: #1b1b1b;
+      --card-bg: #2b2b2b;
+      --text-main: #eeeeee;
+      --text-muted: #aaaaaa;
+      --accent-color: #800000; /* uBlock-ish Red */
+      --accent-hover: #a00000;
+      --border-color: #444444;
+      --btn-bg: #444444;
+      --btn-hover: #555555;
+      --status-color: #76c479;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 24px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Layout Container */
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Form Elements */
+    fieldset {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0; /* Padding handled by children for cleaner layout */
+      margin-bottom: 20px;
+    }
+
+    legend {
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: 100%;
+      box-sizing: border-box;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+
+    /* Radio List Layout */
+    .mode-list {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mode label {
+      display: flex;
+      align-items: flex-start; /* Align top for multi-line text */
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+
+    .mode label:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    input[type="radio"] {
+      appearance: none;
+      background-color: var(--bg-color);
+      border: 1px solid #666;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-right: 12px;
+      margin-top: 3px; /* Align with text */
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    input[type="radio"]:checked {
+      border-color: var(--accent-color);
+      background-color: var(--bg-color);
+    }
+
+    input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+    }
+
+    /* Buttons */
+    button {
+      background-color: var(--btn-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 8px 24px;
+      font-size: 0.9rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--btn-hover);
+    }
+
+    button:active {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    /* Status Message */
+    .status {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 0.9rem;
+      color: var(--status-color);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .status:not(:empty) {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Duoblock Origin</h1>
+    <p>Configure blocking behavior for <strong>duolingo.com</strong>.</p>
+
+    <form id="modeForm">
+      <fieldset>
+        <legend>Blocking Mode</legend>
+        <div class="mode-list">
+          <div class="mode">
+            <label>
+              <input type="radio" name="mode" value="soft">
+              <span>
+                <strong>Soft Block</strong><br>
+                <span style="font-size: 0.85em; color: var(--text-muted);">Most ads are blocked</span>
+              </span>
+            </label>
+          </div>
+          <div class="mode">
+            <label>
+              <input type="radio" name="mode" value="hard">
+              <span>
+                <strong>Hard Block</strong><br>
+                <span style="font-size: 0.85em; color: var(--text-muted);">May break stuff</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit">Apply Changes</button>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -48,6 +48,7 @@
         // Remove ad/advertising config
         data.adsConfig = null;
         data.advertising = null;
+        data.adsEnabled = false;
 
         // Ensure we remain "free" in Hard mode
         data.hasPlus = false;

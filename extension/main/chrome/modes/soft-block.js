@@ -55,6 +55,7 @@
           data.hasPlus = true;
           data.has_plus = true;
           data.isSuper = true;
+          data.adsEnabled = false;
 
           data.adsConfig = null;
           data.adsEnabled = null;

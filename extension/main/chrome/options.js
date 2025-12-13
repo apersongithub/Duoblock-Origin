@@ -1,27 +1,66 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("modeForm");
   const statusEl = document.getElementById("status");
+  const modeInputs = form.querySelectorAll('input[name="mode"]');
+  const profileShortcutInput = document.getElementById("enableProfileShortcut");
+  const closeBtn = document.getElementById("closeBtn");
 
-  // Load current setting
-  const { mode } = await chrome.storage.sync.get("mode");
-  const current = mode || "soft";
-  const input = form.querySelector(`input[name="mode"][value="${current}"]`);
-  if (input) input.checked = true;
+  // Load settings
+  const { mode, enableProfileShortcut } = await chrome.storage.sync.get(["mode", "enableProfileShortcut"]);
+  const currentMode = mode || "soft";
+  const currentInput = form.querySelector(`input[name="mode"][value="${currentMode}"]`);
+  if (currentInput) currentInput.checked = true;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const selected = form.querySelector('input[name="mode"]:checked')?.value || "soft";
-    await chrome.storage.sync.set({ mode: selected });
-    statusEl.textContent = `Saved: ${selected.toUpperCase()} mode`;
+  // Default feature: enabled if undefined
+  profileShortcutInput.checked = enableProfileShortcut !== false;
 
-    // Reload active Duolingo tab (nice UX) while background.js reloads all duolingo tabs
+  function showStatus(text) {
+    statusEl.textContent = text;
+    statusEl.style.opacity = "1";
+    setTimeout(() => {
+      statusEl.style.opacity = "0";
+      setTimeout(() => (statusEl.textContent = ""), 300);
+    }, 1200);
+  }
+
+  async function reloadActiveDuoTab() {
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (tab?.id && tab?.url && /https:\/\/(.+\.)?duolingo\.com\//.test(tab.url)) {
         chrome.tabs.reload(tab.id);
       }
-    } catch {}
+    } catch (err) {
+      console.error("Error reloading tab:", err);
+    }
+  }
 
-    setTimeout(() => (statusEl.textContent = ""), 2000);
+  // Save on mode change (supports soft, hard, extreme)
+  modeInputs.forEach((input) => {
+    input.addEventListener("change", async (event) => {
+      const selected = event.target.value; // "soft" | "hard" | "extreme"
+      await chrome.storage.sync.set({ mode: selected });
+      showStatus("Saved");
+      reloadActiveDuoTab();
+    });
+  });
+
+  // Save on feature toggle
+  profileShortcutInput.addEventListener("change", async () => {
+    const enabled = profileShortcutInput.checked;
+    await chrome.storage.sync.set({ enableProfileShortcut: enabled });
+    showStatus(enabled ? "Enabled" : "Disabled");
+    reloadActiveDuoTab();
+  });
+
+  // Close options tab using Chrome Tabs API
+  closeBtn?.addEventListener("click", async () => {
+    try {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (tab?.id) {
+        await chrome.tabs.remove(tab.id);
+      }
+    } catch (e) {
+      console.error("Failed to close tab via chrome.tabs.remove:", e);
+    }
   });
 });

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+<link rel="icon" href="images/icon-128.png">
 <head>
   <meta charset="utf-8">
   <title>Duoblock Origin</title>
@@ -16,6 +16,22 @@
       --danger: #ef4444;
       --card-bg: #202225;
       --border: #3c4043;
+
+      /* Callout + badge palette */
+      --callout-bg: color-mix(in oklab, var(--color-macaw) 12%, transparent);
+      --callout-border: color-mix(in oklab, var(--color-macaw) 30%, var(--border));
+      --callout-text: #eaf7ff;
+
+      --badge-bg: #2a3136;
+      --badge-text: #cfd7dd;
+      --badge-success-bg: #173a2a;
+      --badge-success-text: #b8ffdc;
+      --badge-warn-bg: #3a2a17;
+      --badge-warn-text: #ffe1b8;
+
+      /* Experimental (purple) */
+      --badge-experimental-bg: #2b1f3a;
+      --badge-experimental-text: #e7d9ff;
     }
 
     /* Light theme tokens (system-based) */
@@ -24,12 +40,27 @@
         --color-swan: #c7ced6;
         --color-macaw: #1cb0f6;
         --color-snow: #ffffff;
-        --bg-color: #f7f9fc;
+        --bg-color: #ffffff;
         --text-main: #1f2937;
         --text-muted: #4b5563;
         --danger: #dc2626;
         --card-bg: #ffffff;
         --border: #e5e7eb;
+
+        --callout-bg: #eef7ff;
+        --callout-border: #cfe9ff;
+        --callout-text: #053b63;
+
+        --badge-bg: #eef2f7;
+        --badge-text: #334155;
+        --badge-success-bg: #e8f8ef;
+        --badge-success-text: #0f5132;
+        --badge-warn-bg: #fff4e6;
+        --badge-warn-text: #7a3e00;
+
+        /* Experimental (purple) light */
+        --badge-experimental-bg: #f2e8ff;
+        --badge-experimental-text: #4b2d78;
       }
     }
 
@@ -120,15 +151,15 @@
     .row .label {
       display: flex;
       flex-direction: column;
+      gap: 6px;
     }
 
     .row strong {
       font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 4px;
     }
 
-    .row span {
+    .row span.desc {
       color: var(--text-muted);
       font-size: 0.9rem;
     }
@@ -229,6 +260,97 @@
       border-bottom: 1px dashed var(--border);
       padding-bottom: 6px;
     }
+
+    /* Friendly compatibility callout */
+    .callout {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      align-items: start;
+      margin: 8px 0 18px;
+      padding: 12px 14px;
+      border: 1px solid var(--callout-border);
+      border-radius: 10px;
+      background: var(--callout-bg);
+      color: var(--callout-text);
+    }
+
+    .callout .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: color-mix(in oklab, var(--callout-border) 35%, transparent);
+      font-size: 18px;
+    }
+
+    .callout h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Badges under each mode */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid color-mix(in oklab, var(--badge-bg) 60%, var(--border));
+    }
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.8;
+    }
+    .badge.success {
+      background: var(--badge-success-bg);
+      color: var(--badge-success-text);
+      border-color: color-mix(in oklab, var(--badge-success-bg) 65%, var(--border));
+    }
+    .badge.warn {
+      background: var(--badge-warn-bg);
+      color: var(--badge-warn-text);
+      border-color: color-mix(in oklab, var(--badge-warn-bg) 65%, var(--border));
+    }
+    /* Experimental (purple) badge */
+    .badge.experimental {
+      background: var(--badge-experimental-bg);
+      color: var(--badge-experimental-text);
+      border-color: color-mix(in oklab, var(--badge-experimental-bg) 65%, var(--border));
+    }
+
+    /* Icons inside badges for Super/Max */
+    .badge-icons {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-icons img {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -239,8 +361,23 @@
       <button class="close-btn" id="closeBtn" aria-label="Close">×</button>
     </div>
 
+    <!-- Polished compatibility note -->
+    <section class="callout" aria-labelledby="compatibility-title" role="note">
+      <div class="icon" aria-hidden="true">ℹ️</div>
+      <div>
+        <h3 id="compatibility-title">Compatibility tips</h3>
+        <p>
+          This extension is built to survive many changes of Duolingo's web interface, but sometimes
+          site changes may require adjustments. If you notice any issues, try switching your block mode.
+<br><br>
+          Note: Soft block may have issues if you use Duolingo Max or Super.
+          In that case, try Hard or Extreme block modes.
+        </p>
+      </div>
+    </section>
+
     <h2>Modes</h2>
-    <form id="modeForm">
+<form id="modeForm">
       <fieldset>
         <legend>Blocking Mode</legend>
         <div class="mode-list">
@@ -250,10 +387,11 @@
             </div>
             <div class="label">
               <strong>Soft Block</strong>
-              <span>Default option, maintains functionality</span>
+              <span class="desc">Default option, maintains most functionality</span>
+              
             </div>
             <label class="toggle-switch" title="Soft Block">
-              <input type="radio" name="mode" value="soft" checked>
+              <input type="radio" name="mode" value="soft" checked="">
               <span class="slider"></span>
             </label>
           </div>
@@ -264,7 +402,15 @@
             </div>
             <div class="label">
               <strong>Hard Block</strong>
-              <span>Heavier, may remove the practice hub</span>
+              <span class="desc">Heavier, may remove the upsell practice hub for free users</span>
+              <div class="badges" aria-label="Compatibility badges">
+                <span class="badge success">
+                  <span class="dot"></span>
+                  Compatible with<span class="badge-icons" aria-hidden="true">
+                    <img src="images/su.svg" alt="Super">
+                    <img src="images/mx.svg" alt="Max">
+                  </span></span>
+              </div>
             </div>
             <label class="toggle-switch" title="Hard/Beta">
               <input type="radio" name="mode" value="hard">
@@ -277,8 +423,11 @@
               <img id="extremeIcon" src="images/extreme.svg" alt="">
             </div>
             <div class="label">
-              <strong>Extreme Block (Experimental)</strong>
-              <span>Beefy, may break functionality; tracks down certain UI elements</span>
+              <strong>Extreme Block</strong>
+              <span class="desc">Beefy, may break functionality; tracks down certain UI elements</span>
+              <div class="badges" aria-label="Compatibility badges">
+                <span class="badge experimental"><span class="dot"></span> Experimental</span>
+              </div>
             </div>
             <label class="toggle-switch" title="Extreme">
               <input type="radio" name="mode" value="extreme">
@@ -298,7 +447,7 @@
             </div>
             <div class="label">
               <strong>In-page Options Button</strong>
-              <span>Adds a “DUOBLOCK ORIGIN” button on the navigation bar</span>
+              <span class="desc">Adds Duoblock Origin to the navigation bar</span>
             </div>
             <label class="toggle-switch" title="Show in-page options button">
               <input type="checkbox" id="enableProfileShortcut">

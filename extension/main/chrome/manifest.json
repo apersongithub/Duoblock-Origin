@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Duoblock Origin",
-  "version": "1.0",
+  "version": "1.1",
   "description": "A lightweight adblocker for Duolingo.",
   "permissions": [
     "storage",
@@ -17,8 +17,7 @@
       "resources": [
         "modes/hard-block.js",
         "modes/soft-block.js",
-        "modes/extreme-block.js",
-        "page-bridge.js"
+        "modes/extreme-block.js"
       ],
       "matches": [
         "https://*.duolingo.com/*",

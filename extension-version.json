@@ -1,8 +1,8 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "chromestupid": "false",
-  "releaseDate": "2025-11-04",
-  "releaseNotes": ".....",
+  "releaseDate": "2025-12-13",
+  "releaseNotes": "Minor fixes",
   "EXTENSION_NAME": "Duoblock Origin Extension",
   "EXTENSION_URL": "https://github.com/apersongithub/Duoblock-Origin/"
 }

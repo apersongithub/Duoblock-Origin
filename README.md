@@ -8,7 +8,7 @@
 
 > [!IMPORTANT]
 > 
-> The following domains and permissions are accessed for patching Duolingo. Each domain serves a specific purpose:
+> The following is accessed for patching Duolingo. Each serves a specific purpose:
 >
 > | **Domains**                          | **Reason**                                                               | **Duolingo's Server** |
 > |-----------------------------------------|-------------------------------------------------------------------------|----------------------|

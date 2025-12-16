@@ -8,9 +8,9 @@
 
 > [!IMPORTANT]
 > 
-> The following domains are accessed for patching Duolingo. Each domain serves a specific purpose:
+> The following domains and permissions are accessed for patching Duolingo. Each domain serves a specific purpose:
 >
-> | **Data Access**                          | **Reason**                                                               | **Duolingo's Server** |
+> | **Domains**                          | **Reason**                                                               | **Duolingo's Server** |
 > |-----------------------------------------|-------------------------------------------------------------------------|----------------------|
 > | `duolingo.com` `duolingo.cn`                          | Needed to modify the website and apply the patch.                         | ✅ Yes               |
 > | `raw.githubusercontent.com`             | Get's the [extension-version.json](https://github.com/apersongithub/Duolingo-Unlimited-Hearts/blob/main/extension-version.json) which includes the version number.         | ❌ No                |

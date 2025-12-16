@@ -14,7 +14,11 @@
 > |-----------------------------------------|-------------------------------------------------------------------------|----------------------|
 > | `duolingo.com` `duolingo.cn`                          | Needed to modify the website and apply the patch.                         | ✅ Yes               |
 > | `raw.githubusercontent.com`             | Get's the [extension-version.json](https://github.com/apersongithub/Duolingo-Unlimited-Hearts/blob/main/extension-version.json) which includes the version number.         | ❌ No                |
-
+>
+> | **Permissions**                          | **Reason**                                                               
+> |-----------------------------------------|-------------------------------------------------------------------------|
+> | `storage`                          | Needed to store the blocking mode.                         | 
+> | `tabs`             | Used to switch back to the duolingo tab after you close the options menu.         |           
 ## <img src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/62bb241121ae018b28240eebffb9fc4a.svg" width="30px"> Installation Process
 | **Browser** | **Installation Steps** |
 |-------------|------------------------|

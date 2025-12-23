@@ -1,7 +1,12 @@
 # <img src="https://github.com/user-attachments/assets/14441a7c-0e20-4c2a-8602-17af7840afc6" width="35px"> Duoblock Origin
 
 ![Chrome Extension Rating](https://img.shields.io/chrome-web-store/rating/mmggedjgcpafokgomcbggjcgponlhama?style=for-the-badge&label=Chrome%20Rating&logo=google-chrome&logoColor=white)
-![Firefox Extension Rating](https://img.shields.io/amo/stars/duoblock-origin?style=for-the-badge&label=Firefox%20Rating&logo=firefox&logoColor=white)
+![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/mmggedjgcpafokgomcbggjcgponlhama?style=for-the-badge&label=USERS)
+![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/mmggedjgcpafokgomcbggjcgponlhama?style=for-the-badge&label=VERSION)
+
+![Firefox Extension Rating](https://img.shields.io/amo/rating/duoblock-origin?style=for-the-badge&label=Firefox%20Rating&logo=firefox&logoColor=white)
+![Firefox Extension Users](https://img.shields.io/amo/users/duoblock-origin?style=for-the-badge&label=USERS)
+![Firefox Extension Version](https://img.shields.io/amo/v/duoblock-origin?style=for-the-badge&label=VERSION)
 
 > A lightweight Duolingo Adblocker
 > 

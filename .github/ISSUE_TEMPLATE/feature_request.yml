@@ -17,7 +17,7 @@ body:
         - label: "I have read the [FAQ](https://github.com/apersongithub/Duoblock-Origin/wiki/FAQ)."
           required: true
 
-        - label: "I am on the latest version of the extension/userscript."
+        - label: "I am on the latest version of the extension."
           required: true
 
   - type: textarea
@@ -38,22 +38,6 @@ body:
         - "Yes"
     validations:
       required: true
-
-  - type: input
-    id: platform_os
-    attributes:
-      label: OS
-      placeholder: "e.g. iOS, Windows"
-    validations:
-      required: false
-
-  - type: input
-    id: browser
-    attributes:
-      label: Browser
-      placeholder: "e.g. Chrome, Firefox"
-    validations:
-      required: false
 
   - type: textarea
     id: screenshots

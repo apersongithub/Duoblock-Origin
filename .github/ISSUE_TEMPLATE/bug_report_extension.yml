@@ -1,6 +1,5 @@
-name: 🧩 Bug report (Extension)
+name: 🧩 Bug report
 description: Create a report to help us improve the extension
-title: "[Bug]: "
 labels: ["bug", "extension"]
 assignees: 
   - apersongithub

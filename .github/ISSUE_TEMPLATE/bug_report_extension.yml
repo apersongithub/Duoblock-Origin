@@ -82,12 +82,14 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: dropdown
     id: blocking_mode
     attributes:
-      label: Blocking Mode
-      description: View in extension options.
-      placeholder: "Ex: Hard, Extreme"
+      label: View in extension options (Default blocking mode is "Soft")
+      options:
+        - Soft
+        - Hard
+        - Extreme
     validations:
       required: true
 

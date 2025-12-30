@@ -85,7 +85,7 @@ body:
   - type: dropdown
     id: blocking_mode
     attributes:
-      label: View in extension options
+      label: Blocking Mode
       options:
         - Soft Block
         - Hard Block

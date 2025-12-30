@@ -85,11 +85,11 @@ body:
   - type: dropdown
     id: blocking_mode
     attributes:
-      label: View in extension options (Default blocking mode is "Soft")
+      label: View in extension options
       options:
-        - Soft
-        - Hard
-        - Extreme
+        - Soft Block
+        - Hard Block
+        - Extreme Block
     validations:
       required: true
 
